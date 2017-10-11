@@ -37,7 +37,7 @@ class userManagement {
   user { 'wilma':
     ensure => present,
     home => '/home/wilma',
-    uid =>  '10028797',
+    uid =>  '10038797',
     groups => ['trucks','cars','ambulances'],
   }
   
