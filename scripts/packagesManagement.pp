@@ -74,7 +74,7 @@ class packagesManagement {
   exec { 'install_mysql':  # exec resource named 
     command => 'wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm && sudo rpm -Uvh mysql57-community-release-el7-11.noarch.rpm && rm mysql57-community-release-el7-11.noarch.rpm',  # command this resource will run
   }
-  }
+  
   package { 'mysql-server':
     ensure => installed,
   }
@@ -87,25 +87,18 @@ class packagesManagement {
     ensure => running,
     enable  => true,
   }
-
   # ensure mysql service is running
   service { 'mysqld':
     ensure  => running,
     enable  => true,
   
   }
-
   # ensure mysql service is running
   service { 'vncserver':
     ensure  => running,
     enable  => true,
   
   }
-
-  
-
-
-
 
   
   
