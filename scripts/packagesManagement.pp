@@ -65,12 +65,6 @@ class packagesManagement {
     enable  => true,
     require => Package['mysql-server'],
   }
-  service { 'mysql':
-    ensure  => true,
-    enable  => true,
-    require => Package['mysql-server'],
-  }
-
 
 
 
