@@ -1,5 +1,12 @@
 class userManagement {
+  #install the shell packages
+  package { 'csh':
+    ensure => 'installed',
+  }
+
+  #groups management
   group { 'sysadmin':
+
     ensure => present,
   }
   group { 'cars':
@@ -12,6 +19,7 @@ class userManagement {
     ensure => present,
   }
 
+  #users Management
   user { 'becca':
     ensure => present,
     home => '/home/becca',
