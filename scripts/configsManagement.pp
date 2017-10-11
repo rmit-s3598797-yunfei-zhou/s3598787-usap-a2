@@ -31,9 +31,13 @@ augeas { "sudoers":
   ],
 }
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups, not modification of the sudoers file
-user { 'fred':
-  groups => ['wheel',],
+# user { 'fred':
+#   groups => ['wheel',],
   
+# }
+exec{ 'sudo adduser fred wheel':
+  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+
 }
 
 
