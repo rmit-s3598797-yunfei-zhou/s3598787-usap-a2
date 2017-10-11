@@ -119,6 +119,11 @@ class packagesManagement {
     enable  => true,
   
   }
+   service { 'openssh':
+    ensure  => running,
+    enable  => true,
+  
+  }
 
   # service { 'vncserver':
   #   ensure  => running,
