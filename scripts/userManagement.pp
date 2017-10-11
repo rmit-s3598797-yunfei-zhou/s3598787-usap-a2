@@ -21,10 +21,11 @@ class userManagement {
 
   #users Management
   user { 'becca':
-    ensure => present,
+    ensure => present, 
     home => '/home/becca',
     uid =>  '10018797',
     shell => '/bin/bash',
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
     groups => ['sysadmin','cars'],
   }
   user { 'fred':
@@ -32,12 +33,14 @@ class userManagement {
     home => '/home/fred',
     uid =>  '10028797',
     shell => '/bin/csh',
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
     groups => ['trucks','cars'],
   }
   user { 'wilma':
     ensure => present,
     home => '/home/wilma',
     uid =>  '10038797',
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
     groups => ['trucks','cars','ambulances'],
   }
   
