@@ -1,12 +1,12 @@
 class packagesManagement {
 
   exec{ 'enableOptional':
-    command => 'sudo /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional'
+    command => 'sudo bash && /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && exit'
   }#vYou need to enable the optional channels. On AWS this is done in a different way: yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 #https://serverfault.com/questions/725272/how-to-install-lynx-on-an-aws-redhat-machine-that-cant-find-the-package
 
   exec { 'yum':  # exec resource named 'apt-update'
-    command => '/usr/bin/yum update -y'  # command this resource will run
+    command => 'sudo /usr/bin/yum update -y'  # command this resource will run
   }
 
   #install the shell packages
