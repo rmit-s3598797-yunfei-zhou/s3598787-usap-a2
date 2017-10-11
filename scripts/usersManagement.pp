@@ -1,3 +1,4 @@
+#Task 1
 class usersManagement {
   #install the shell packages
   package { 'csh':
@@ -44,6 +45,21 @@ class usersManagement {
     groups => ['trucks','cars','ambulances'],
     
   }
+
+  file { '/home/becca':
+    ensure => directory,
+    owner  => becca,
+  }
+  file { '/home/fred':
+    ensure => directory,
+    owner  => fred,
+  }
+  file { '/home/wilma':
+    ensure => directory,
+    owner  => wilma,
+  }
+
+
   file { '/home/wilma/.ssh':
     ensure => directory,
     owner  => wilma,
