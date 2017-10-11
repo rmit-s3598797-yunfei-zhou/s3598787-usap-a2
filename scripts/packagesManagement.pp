@@ -1,12 +1,21 @@
 class packagesManagement {
 
-  exec{ 'enableOptional':
-    command => 'sudo bash && /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && exit'
+
+# exec { 'tar -xf /Volumes/nfs02/important.tar':
+#   cwd     => '/var/tmp',
+#   creates => '/var/tmp/myfile',
+#   path    => ['/usr/bin', '/usr/sbin',],
+# }
+
+  exec{
+   'sudo bash && /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && exit':
+   path    => ['/usr/bin', '/usr/sbin',],
   }#vYou need to enable the optional channels. On AWS this is done in a different way: yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 #https://serverfault.com/questions/725272/how-to-install-lynx-on-an-aws-redhat-machine-that-cant-find-the-package
 
-  exec { 'yum':  # exec resource named 'apt-update'
-    command => 'sudo /usr/bin/yum update -y'  # command this resource will run
+  exec { 
+      'sudo /usr/bin/yum update -y':  # command this resource will run
+    path    => ['/usr/bin', '/usr/sbin',],
   }
 
   #install the shell packages
@@ -61,18 +70,17 @@ class packagesManagement {
 
 
   #manual install paskages
-  exec { 'install_cgdb':  # exec resource named 'apt-update'
- 
-    command => 'git clone git://github.com/cgdb/cgdb.git && cd cgdb &&./autogen.sh &&./configure --prefix=/usr/local && make && sudo make install && cd ..&& sudo rm -rf ./cgdb',  # command this resource will run
+  exec { 'git clone git://github.com/cgdb/cgdb.git && cd cgdb &&./autogen.sh &&./configure --prefix=/usr/local && make && sudo make install && cd ..&& sudo rm -rf ./cgdb':
+    # command this resource will run
+    path    => ['/usr/bin', '/usr/sbin',],
   }
 
-  exec { 'install_dia2code':  # exec resource named 
- 
-    command => '/usr/bin/wget  https://jaist.dl.sourceforge.net/project/dia2code/dia2code/0.8.3/dia2code-0.8.3-3.1.i586.rpm && sudo rpm -Uvh dia2code-0.8.3-3.1.i586.rpm && rm dia2code-0.8.3-3.1.i586.rpm',  # command this resource will run
+  exec {  '/usr/bin/wget  https://jaist.dl.sourceforge.net/project/dia2code/dia2code/0.8.3/dia2code-0.8.3-3.1.i586.rpm && sudo rpm -Uvh dia2code-0.8.3-3.1.i586.rpm && rm dia2code-0.8.3-3.1.i586.rpm':  # command this resource will run
+   path    => ['/usr/bin', '/usr/sbin',],
   }
 
-  exec { 'install_mysql':  # exec resource named 
-    command => '/usr/bin/wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm && sudo rpm -Uvh mysql57-community-release-el7-11.noarch.rpm && rm mysql57-community-release-el7-11.noarch.rpm',  # command this resource will run
+  exec { '/usr/bin/wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm && sudo rpm -Uvh mysql57-community-release-el7-11.noarch.rpm && rm mysql57-community-release-el7-11.noarch.rpm':  # command this resource will run
+     path    => ['/usr/bin', '/usr/sbin',],
   }
   
   package { 'mysql-server':
