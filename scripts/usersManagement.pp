@@ -1,4 +1,4 @@
-class userManagement {
+class usersManagement {
   #install the shell packages
   package { 'csh':
     ensure => 'installed',
