@@ -1,6 +1,6 @@
 class packagesManagement {
 
-  exec { 'yum':                    # exec resource named 'apt-update'
+  exec { 'yum':  # exec resource named 'apt-update'
     command => '/usr/bin/yum update -y'  # command this resource will run
   }
 
@@ -57,13 +57,14 @@ class packagesManagement {
   # ensure apache2 service is running
   service { 'httpd':
     ensure => running,
+    enable  => true,
   }
 
   # ensure mysql service is running
   service { 'mysql':
     ensure  => running,
     enable  => true,
-    require => Package['mysql-server'],
+  
   }
 
 
