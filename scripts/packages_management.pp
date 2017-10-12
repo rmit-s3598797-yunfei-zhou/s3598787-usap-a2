@@ -1,5 +1,5 @@
 #Task 3
-class packagesmanagement {
+class packages_management {
 
   exec{ 'sudo /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && exit':
     path    => ['/usr/bin', '/usr/sbin',],

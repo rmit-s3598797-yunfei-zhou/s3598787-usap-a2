@@ -1,5 +1,5 @@
 #Task 5
-class hostsmanagement {
+class hosts_management {
 
   # create a fully qualified full host entry with an alias
   host { 'titan.csit.rmit.edu.au':
