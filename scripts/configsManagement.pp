@@ -22,24 +22,37 @@ class configsManagement {
 # }
 
 #c. sudoers must allow becca to sudo to a root shell
-augeas { 'sudoers':
-  context => '/etc/sudoers',
-  changes => [
-    "set spec[user = 'becca']/user becca",
-    "set spec[user = 'becca']/host_group/host ALL",
-    "set spec[user = 'becca']/host_group/command ALL",
-    "set spec[user = 'becca']/host_group/command/runas_user ALL",
-  ],
+# augeas { 'sudoers':
+#   context => '/file/etc/sudoers',
+#   changes => [
+#   "set root    ALL=(ALL)       ALL"
+#     "set spec[user = 'becca']/user becca",
+#     "set spec[user = 'becca']/host_group/host ALL",
+#     "set spec[user = 'becca']/host_group/command ALL",
+#     "set spec[user = 'becca']/host_group/command/runas_user ALL",
+#   ],
+# }
+augeas { "sudobecca":
+    context => "/files/etc/sudoers",
+    changes => [
+        "set spec[user = 'becca']/user fred",
+        "set spec[user = 'becca']/host_group/host ALL",
+        "set spec[user = 'becca']/host_group/command SERVICES",
+        "set spec[user = 'becca']/host_group/command/runas_user root",
+        "set spec[user = 'becca']/host_group/command/tag NOPASSWD",
+    ],
 }
+
+
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups, not modification of the sudoers file
 # user { 'fred':
 #   groups => ['wheel',],
   
 # }
-exec{ 'sudo adduser fred wheel':
-  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+# exec{ 'sudo adduser fred wheel':
+#   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
 
-}
+# }
 
 
 }
