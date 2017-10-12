@@ -15,7 +15,7 @@ class subscribesManagement {
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    content => template('ssh/sshd_config.erb'),
+    content => template('/etc/ssh/sshd_config.rpmnew'),
   }
 
   file { '/etc/httpd/conf/httpd.conf':
