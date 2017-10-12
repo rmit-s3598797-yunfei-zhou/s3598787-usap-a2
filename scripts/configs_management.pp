@@ -71,9 +71,11 @@ file { '/home/becca/titan':
   ensure => directory,
   owner  => becca,
 }
-mount { 'titan':
+mount { '/home/becca/titan':
   ensure  => mounted,
   device  => 'sshfs#s3598797@titan.csit.rmit.edu.au:/',
+  fstype  =>  'xfs',
 }
+
 
 }

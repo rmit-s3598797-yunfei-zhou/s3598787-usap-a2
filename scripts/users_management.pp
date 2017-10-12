@@ -7,7 +7,6 @@ class users_management {
 
   #groups management
   group { 'sysadmin':
-
     ensure => present,
   }
   group { 'cars':
@@ -18,32 +17,6 @@ class users_management {
   }
   group { 'ambulances':
     ensure => present,
-  }
-
-  #users Management
-  user { 'becca':
-    ensure   => present,
-    home     => '/home/becca',
-    uid      =>  '10018797',
-    shell    => '/bin/bash',
-    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
-    groups   => ['sysadmin','cars'],
-  }
-  user { 'fred':
-    ensure   => present,
-    home     => '/home/fred',
-    uid      =>  '10028797',
-    shell    => '/bin/csh',
-    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
-    groups   => ['trucks','cars'],
-  }
-  user { 'wilma':
-    ensure   => present,
-    home     => '/home/wilma',
-    uid      =>  '10038797',
-    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
-    groups   => ['trucks','cars','ambulances'],
-
   }
 
   file { '/home/becca':
@@ -59,6 +32,34 @@ class users_management {
     owner  => wilma,
   }
 
+
+
+
+  #users Management
+  user { 'becca':
+    ensure   => present,
+    home     => '/home/becca',
+    uid      =>  '10018797',
+    shell    => '/bin/bash',
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
+    groups   => ['sysadmin','cars'], # set groups for becca
+  }
+  user { 'fred':
+    ensure   => present,
+    home     => '/home/fred',
+    uid      =>  '10028797',
+    shell    => '/bin/csh',
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/',
+    groups   => ['trucks','cars'], # set groups for fred
+  }
+  user { 'wilma':
+    ensure   => present, # make sure this user will be created by puppet
+    home     => '/home/wilma', # set home directory
+    uid      =>  '10038797', # default user id 1003+ my last 4 student id
+    password => '$1$fAVb8Rx5$dPRNhLgso7wtdG6b8QaF4/', # managed the user's password
+    groups   => ['trucks','cars','ambulances'], # set groups for wilma
+
+  }
 
   file { '/home/wilma/.ssh':
     ensure => directory,
