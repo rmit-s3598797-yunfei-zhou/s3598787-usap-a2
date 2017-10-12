@@ -17,7 +17,7 @@ file{'/var/www/s3598797':
 #    mode    =>  0755,
 }
 augeas { 'httpd_conf':
-  context => "/files/etc/httpd/conf",
+  context => "/files/etc/httpd/conf/httpd.conf",
   changes => [
       'set directive[.="DocumentRoot"] "DocumentRoot"',
       "set directive[.='DocumentRoot']/arg '/var/www/s3598797'",
