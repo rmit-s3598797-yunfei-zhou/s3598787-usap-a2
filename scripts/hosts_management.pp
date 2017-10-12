@@ -1,5 +1,5 @@
 #Task 5
-class hostsManagement {
+class hostsmanagement {
 
   # create a fully qualified full host entry with an alias
   host { 'titan.csit.rmit.edu.au':
@@ -16,6 +16,6 @@ class hostsManagement {
     ip           => '131.170.5.132',
     host_aliases => 'saturn',
   }
- 
-  
+
+
 }

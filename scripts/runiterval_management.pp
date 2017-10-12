@@ -1,11 +1,11 @@
 #Task 2
-class runitervalManagement {
+class runiterval_management {
   # # Option 1:
-	# augeas { 'interval':
-	# context => '/files/etc/puppetlabs/puppet/puppet.conf',
+  # augeas { 'interval':
+  # context => '/files/etc/puppetlabs/puppet/puppet.conf',
   #     changes => 'set runiterval 1200', #check in for every 20 minutes / 3 times each hour
   # }
-   # resources
+  # resources
 
   #Option 2
   # schedule { 'everyday':
@@ -18,7 +18,7 @@ class runitervalManagement {
   #    path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
   # }
   exec { 'sudo /usr/local/bin/puppet agent --runinterval  1200':
-    path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
-  }
-  
+  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+}
+
 }
