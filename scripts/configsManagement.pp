@@ -15,10 +15,10 @@ file{'/var/www/s3598797':
     ensure  =>  directory,
     mode    =>  0755,
 }
-augeas { 'httpd_conf':
-  context => '/files/etc/httpd/conf',
-  changes => 'set DocumentRoot /var/www/s3598797',
-}
+# augeas { 'httpd_conf':
+#   context => '/files/etc/httpd/conf',
+#   changes => 'set DocumentRoot "/var/www/s3598797"',
+# }
 
 #c. sudoers must allow becca to sudo to a root shell
 augeas { 'sudoers':
