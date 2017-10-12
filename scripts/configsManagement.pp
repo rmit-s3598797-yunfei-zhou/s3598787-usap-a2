@@ -12,14 +12,19 @@ class configsManagement {
 #b. disable root login for ssh
 # Make sure the directory is exist
 
-# file{'/var/www/s3598797':
-#     ensure  =>  directory,
-#     mode    =>  0755,
-# }
-# augeas { 'httpd_conf':
-#   context => '/files/etc/httpd/conf',
-#   changes => 'set DocumentRoot "/var/www/s3598797"',
-# }
+file{'/var/www/s3598797':
+    ensure  =>  directory,
+#    mode    =>  0755,
+}
+augeas { 'httpd_conf':
+  context => "/files/etc/httpd/conf",
+  changes => [
+      'set directive[.="DocumentRoot"] "DocumentRoot"',
+      "set directive[.='DocumentRoot']/arg '/var/www/s3598797'",
+    ],
+  #changes => "set spec[ DocumentRoot = '/var/www/s3598797']/userDocumentRoot '/var/www/s3598797'",
+  
+}
 
 #c. sudoers must allow becca to sudo to a root shell
 # augeas { 'sudoers':
@@ -43,6 +48,7 @@ class configsManagement {
       ],
   }
 
+  
 
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups, not modification of the sudoers file
 # user { 'fred':

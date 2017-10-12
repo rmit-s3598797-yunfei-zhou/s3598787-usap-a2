@@ -1,21 +1,13 @@
 #Task 3
 class packagesManagement {
 
-
-# exec { 'tar -xf /Volumes/nfs02/important.tar':
-#   cwd     => '/var/tmp',
-#   creates => '/var/tmp/myfile',
-#   path    => ['/usr/bin', '/usr/sbin',],
-# }
-
   exec{
    'sudo /usr/bin/yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && exit':
    path    => ['/usr/bin', '/usr/sbin',],
-  }#vYou need to enable the optional channels. On AWS this is done in a different way: yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
+  }
+  #vYou need to enable the optional channels. On AWS this is done in a different way: yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 #https://serverfault.com/questions/725272/how-to-install-lynx-on-an-aws-redhat-machine-that-cant-find-the-package
 
- 
-  
 
 
   exec { 
@@ -111,17 +103,19 @@ class packagesManagement {
   # ensure apache2 service is running
   service { 'httpd':
     ensure => running,
-    enable  => true,
+    enable  => true, # Make sure it will start on boot
   }
   # ensure mysql service is running
   service { 'mysqld':
     ensure  => running,
-    enable  => true,
+    enable  => true, # Make sure it will start on boot
   
   }
-   service { 'openssh':
+
+  #ensure openssh is running
+   service { 'sshd': 
     ensure  => running,
-    enable  => true,
+    enable  => true, # Make sure it will start on boot
   
   }
 
