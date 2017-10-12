@@ -11,10 +11,11 @@ class configsManagement {
  }
 #b. disable root login for ssh
 # Make sure the directory is exist
-file{'/var/www/s3598797':
-    ensure  =>  directory,
-    mode    =>  0755,
-}
+
+# file{'/var/www/s3598797':
+#     ensure  =>  directory,
+#     mode    =>  0755,
+# }
 # augeas { 'httpd_conf':
 #   context => '/files/etc/httpd/conf',
 #   changes => 'set DocumentRoot "/var/www/s3598797"',
