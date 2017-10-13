@@ -10,6 +10,9 @@ class configs_management{
     'set PermitRootLogin no',
   ],
   }
+exec{ 'sudo services sshd restart':
+  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+}
 
 #b. disable root login for ssh
 # Make sure the directory is exist
@@ -27,9 +30,7 @@ augeas { 'httpd_conf':
 }
 #reference：
 #https://stackoverflow.com/questions/34094284/setting-servername-with-augeas
-exec{ 'sudo services sshd restart':
-  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
-}
+
 
 #c. sudoers must allow becca to sudo to a root shell
 
@@ -45,7 +46,6 @@ exec{ 'sudo services sshd restart':
   # }
 #still get error 
 
-
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups,
 #not modification of the sudoers file
 
@@ -56,13 +56,13 @@ exec{ 'sudo usermod -aG wheel fred':
 #e.
 Exec { path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/','/usr/local/bin' ] }
 
-
-f.
+#f.
 #mount
 file { '/home/becca/titan':
   ensure => directory,
   owner  => becca,
 }
+
 # mount { '/home/becca/titan':
 #   ensure  => mounted,
 #   device  => 'sshfs#s3598797@titan.csit.rmit.edu.au:~/',
@@ -73,9 +73,9 @@ file { '/home/becca/titan':
 # sudo sshfs -o allow_other -p 2015Love1005!! s3598797@titan.csit.rmit.edu.au:~/ /home/becca/titan                    
 
 
-exec { "sudo sshfs -o allow_other -p 2015Love1005!! s3598797@titan.csit.rmit.edu.au:~/ /home/becca/titan":
-  path => ['/usr/bin','/usr/sbin','/usr/local/bin',],
-}
+# exec { "sudo sshfs -o allow_other s3598797@titan.csit.rmit.edu.au:/ /home/becca/titan":
+#   path => ['/usr/bin','/usr/sbin','/usr/local/bin',],
+# }
 
 
 
