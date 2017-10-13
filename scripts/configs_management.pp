@@ -47,6 +47,9 @@ exec{ 'sudo useradd -G wheel fred ':
   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
 }
 
+#e.
+Exec { path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/','/usr/local/bin' ] }
+
 
 
 #mount
@@ -55,7 +58,7 @@ file { '/home/becca/titan':
   owner  => becca,
 }
 mount { '/home/becca/titan':
-  ensure  => present,
+  ensure  => mounted,
   device  => 'sshfs#s3598797@titan.csit.rmit.edu.au:~/',
   fstype  =>  'xfs',
 }
