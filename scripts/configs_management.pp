@@ -27,16 +27,16 @@ augeas { 'httpd_conf':
 
 #c. sudoers must allow becca to sudo to a root shell
 
-  augeas { 'sudobecca':
-      context => '/files/etc/sudoers',
-      changes => [
-          "set spec[user = 'becca']/user becca",
-          "set spec[user = 'becca']/host_group/host ALL",
-          "set spec[user = 'becca']/host_group/command SERVICES",
-          "set spec[user = 'becca']/host_group/command/runas_user root",
-          "set spec[user = 'becca']/host_group/command/tag NOPASSWD",
-      ],
-  }
+  # augeas { 'sudobecca':
+  #     context => '/files/etc/sudoers',
+  #     changes => [
+  #         "set spec[user = 'becca']/user becca",
+  #         "set spec[user = 'becca']/host_group/host ALL",
+  #         "set spec[user = 'becca']/host_group/command SERVICES",
+  #         "set spec[user = 'becca']/host_group/command/runas_user root",
+  #         "set spec[user = 'becca']/host_group/command/tag NOPASSWD",
+  #     ],
+  # }
 
 
 
