@@ -8,7 +8,6 @@ class packages_management {
 #https://serverfault.com/questions/725272/how-to-install-lynx-on-an-aws-redhat-machine-that-cant-find-the-package
 
 
-
   exec { 'sudo /usr/bin/yum update -y':  # command this resource will run
     path    => ['/usr/bin', '/usr/sbin',],
   }
@@ -17,41 +16,30 @@ class packages_management {
   package { 'openssh':
     ensure => installed,
   }
-
   package { 'httpd':
     ensure => installed,
   }
-
-
   package { 'php':
     ensure => installed,
   }
-
   package { 'tigervnc-server':
     ensure => installed,
   }
   package { 'tmux':
     ensure => installed,
   }
-
   package { 'lynx':
     ensure => installed,
   }
   package { 'gcc':
     ensure => installed,
   }
-
-  # package { 'cgdb':
-  #   ensure => installed,
-  # }
   package { 'vim':
     ensure => installed,
   }
   package { 'emacs':
     ensure => installed,
   }
-
-
   package { 'git':
     ensure => installed,
   }
@@ -64,17 +52,18 @@ class packages_management {
 
 
   #install dia2code
-  package { 'libxml2-devel ':
-      ensure => installed,
-  }
+  # package { 'libxml2-devel ':
+  #     ensure => installed,
+  # }
 
 
   # exec {  'wget https://jaist.dl.sourceforge.net/project/dia2code/dia2code/0.8.3/dia2code-0.8.3-3.1.i586.rpm ; sudo rpm -Uvh dia2code-0.8.3-3.1.i586.rpm ; rm dia2code-0.8.3-3.1.i586.rpm':  # command this resource will run
   #   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
   # }
 
-  exec {  'wget http://prdownloads.sourceforge.net/dia2code/dia2code-0.8.3.tar.gz ; tar -xvf dia2code-0.8.3.tar.gz; cd dia2code-0.8.3;  bash ./configure; sudo make; sudo install; cd ..; rm -rf dia2code-0.8.3; rm dia2code-0.8.3.tar.gz':  # command this resource will run
-      path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+  #install dia2code
+  exec {  'sudo yum install -y libxml2-devel; wget http://prdownloads.sourceforge.net/dia2code/dia2code-0.8.3.tar.gz ; tar -xvf dia2code-0.8.3.tar.gz; cd dia2code-0.8.3;  bash ./configure; sudo make; sudo install; cd ..; rm -rf dia2code-0.8.3; rm dia2code-0.8.3.tar.gz':  # command this resource will run
+    path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
   }
 
   # install mysql-server
@@ -88,7 +77,7 @@ class packages_management {
 
   #install the epel for cgdb and sshfs
   exec{ 'wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; rpm -ivh epel-release-latest-7.noarch.rpm; rm epel-release-latest-7.noarch.rpm':
-   path    => ['/usr/bin', '/usr/sbin',],
+    path    => ['/usr/bin', '/usr/sbin',],
   }
 
   package { 'cgdb':
@@ -117,11 +106,7 @@ class packages_management {
 
   }
 
-  # service { 'vncserver':
-  #   ensure  => running,
-  #   enable  => true,
 
-  # }
 
 
 
