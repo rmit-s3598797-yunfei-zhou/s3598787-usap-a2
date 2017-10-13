@@ -15,7 +15,6 @@ class subscribes_management {
     mode   => '0644',
     owner  => 'root',
     group  => 'root',
-    # content => template('/etc/ssh/sshd_config.rpmnew'),
   }
 
   file { '/etc/httpd/conf/httpd.conf':
@@ -23,8 +22,6 @@ class subscribes_management {
     mode   => '0644',
     owner  => 'root',
     group  => 'root',
-    #require => Package['openssh-server'], #already installed
-    #content => template('ssh/sshd_config.erb'),
   }
 
 
