@@ -10,9 +10,7 @@ class configs_management{
     'set PermitRootLogin no',
   ],
   }
-exec{ 'sudo services sshd restart':
-  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
-}
+
 
 #b. disable root login for ssh
 # Make sure the directory is exist
@@ -30,7 +28,6 @@ augeas { 'httpd_conf':
 }
 #reference：
 #https://stackoverflow.com/questions/34094284/setting-servername-with-augeas
-
 
 #c. sudoers must allow becca to sudo to a root shell
 
