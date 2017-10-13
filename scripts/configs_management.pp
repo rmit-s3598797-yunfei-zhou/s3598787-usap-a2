@@ -10,6 +10,7 @@ class configs_management{
     'set PermitRootLogin no',
   ],
   }
+
 #b. disable root login for ssh
 # Make sure the directory is exist
 
@@ -24,6 +25,11 @@ augeas { 'httpd_conf':
       "set directive[.='DocumentRoot']/arg '/var/www/s3598797'",
     ],
 }
+#reference：
+#https://stackoverflow.com/questions/34094284/setting-servername-with-augeas
+exec{ 'sudo services sshd restart':
+  path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
+}
 
 #c. sudoers must allow becca to sudo to a root shell
 
@@ -37,7 +43,7 @@ augeas { 'httpd_conf':
   #         "set spec[user = 'becca']/host_group/command/tag NOPASSWD",
   #     ],
   # }
-
+#still get error 
 
 
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups,

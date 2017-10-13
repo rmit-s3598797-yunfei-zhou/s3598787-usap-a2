@@ -1,6 +1,5 @@
 #Task 2
 class runiterval_management {
-  
   #Option 1
   # schedule { 'everyday':
   #   period => hourly,
@@ -16,5 +15,5 @@ class runiterval_management {
   exec { 'sudo /usr/local/bin/puppet agent --runinterval  1200':
   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
 }
-
+#set the runinterval for ever 1200 seconds (20 mins / 3 times each hour)
 }
