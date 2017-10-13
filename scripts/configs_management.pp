@@ -43,7 +43,7 @@ augeas { 'httpd_conf':
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups,
 #not modification of the sudoers file
 
-exec{ 'sudo useradd -g fred wheel':
+exec{ 'sudo usermod -aG wheel fred':
   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
 }
 
@@ -51,7 +51,7 @@ exec{ 'sudo useradd -g fred wheel':
 Exec { path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/','/usr/local/bin' ] }
 
 
-
+f.
 #mount
 file { '/home/becca/titan':
   ensure => directory,
