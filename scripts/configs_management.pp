@@ -43,7 +43,7 @@ augeas { 'httpd_conf':
 #d. fred is also required to be able to sudo to root but in this case you must achieve this using groups,
 #not modification of the sudoers file
 
-exec{ 'sudo useradd -G wheel fred ':
+exec{ 'sudo useradd -g fred wheel':
   path  => ['/usr/bin', '/usr/sbin','/usr/local/bin'],
 }
 
@@ -57,10 +57,18 @@ file { '/home/becca/titan':
   ensure => directory,
   owner  => becca,
 }
-mount { '/home/becca/titan':
-  ensure  => mounted,
-  device  => 'sshfs#s3598797@titan.csit.rmit.edu.au:~/',
-  fstype  =>  'xfs',
+# mount { '/home/becca/titan':
+#   ensure  => mounted,
+#   device  => 'sshfs#s3598797@titan.csit.rmit.edu.au:~/',
+#   fstype  =>  'xfs',
+# }
+
+# echo '2015Love1005!!'|sudo sshfs -o allow_other s3598797@titan.csit.rmit.edu.au:~/ /home/becca/titan   
+# sudo sshfs -o allow_other -p 2015Love1005!! s3598797@titan.csit.rmit.edu.au:~/ /home/becca/titan                    
+
+
+exec { "sudo sshfs -o allow_other -p 2015Love1005!! s3598797@titan.csit.rmit.edu.au:~/ /home/becca/titan":
+  path => ['/usr/bin','/usr/sbin','/usr/local/bin',],
 }
 
 
